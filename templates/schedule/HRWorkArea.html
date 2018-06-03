@@ -1,0 +1,99 @@
+{% extends 'schedule/base.html' %}
+{% load static %}
+{% block title %}
+Welcome HR
+{% endblock %}
+{% block body %}
+    <div class="container" style="margin-top: 20vh; background-color: black">
+    <div class="card-columns">
+    <div class="card p-5" style="width:400px; background: transparent">
+  <img class="card-img-top" src="{% static 'schedule/CandidateManagement.png' %}" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title d-flex justify-content-center">John Doe</h4>
+    <p class="card-text d-flex justify-content-center">Add Candidates</p>
+            <!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary d-flex mx-auto" data-toggle="modal" data-target="#myModal">
+  Add
+</button>
+  </div>
+</div>
+    <div class="card p-5" style="width:400px; background: transparent">
+  <img class="card-img-top" src="{% static 'schedule/CandidateManagement.png' %}" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title d-flex justify-content-center">John Doe</h4>
+    <p class="card-text d-flex justify-content-center">Edit Candidates</p>
+        <a href="#" class="btn btn-primary d-flex justify-content-center">Edit</a>
+  </div>
+</div>
+    <div class="card p-5" style="width:400px; background: transparent">
+  <img class="card-img-top" src="{% static 'schedule/CandidateManagement.png' %}" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title d-flex justify-content-center">John Doe</h4>
+    <p class="card-text d-flex justify-content-center">View Candidates</p>
+        <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+  </div>
+</div>
+    </div>
+    </div>
+
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Candidate</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form method="post" action="{% url 'add_candidate' %}">
+            {% csrf_token %}
+  <div class="form-group">
+    <label for="Name"><span style="color: black">Name</span></label>
+    {{ form.name}}
+  </div>
+  <div class="form-group">
+    <label for="pwd"><span style="color: black">Experience</span></label>
+    {{ form.experience }}
+  </div>
+  <div class="form-group">
+      <label for="pwd"><span style="color: black">Interview Date</span></label>
+    {{ form.interview_date }}
+  </div>
+
+
+        <div class="form-group">
+  <label for="sel1">Interviewed By</label>
+  <select class="form-control" name="interviewed_by" id="sel1">
+        {% for choice in form.interviewed_by.field.choices %}
+        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+                <div class="form-group">
+  <label for="sel1">Status</label>
+  <select class="form-control" name="status" id="sel1">
+        {% for choice in form.status.field.choices %}
+        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+    {% endfor %}
+  </select>
+</div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
