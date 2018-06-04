@@ -1,0 +1,24 @@
+{% extends 'schedule/base.html' %}
+{% load bootstrap_pagination %}
+{% block title %}Candidates
+{% endblock %}
+{% block body %}
+
+    <div class="card-deck" style="margin-top: 10vh">
+{% for candidate in candidates %}
+  <div class="card bg-primary">
+    <div class="card-body text-center">
+      <p class="card-text">{{ candidate.name }}</p>
+        <p class="card-text">{{ candidate.experience }}</p>
+        <p class="card-text">{{ candidate.interviewed_by }}</p>
+        <p class="card-text">{{ candidate.interview_date }}</p>
+        <p class="card-text">{{ candidate.applying_for }}</p>
+        <p class="card-text">{{ candidate.status }}</p>
+    </div>
+</div>
+    {% endfor %}
+    </div>
+    <div style="margin-top: 10vh;">
+{% bootstrap_paginate page_obj range=10 %}
+    </div>
+{% endblock %}

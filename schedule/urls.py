@@ -6,6 +6,7 @@ urlpatterns = [
     path('hrworkarea', views.HRWorkArea.as_view(), name='hrworkarea'),
     path('workarea', views.WorkArea.as_view(), name='workarea'),
     path('logout', views.Logout.as_view(), name='logout'),
-    path('addcandidate', views.CreateCandidate.as_view(), name='add_candidate')
+    path('addcandidate', views.CreateCandidate.as_view(), name='add_candidate'),
+    path('viewcandidate', views.ViewCandidates.as_view(), name='view_candidate'),
 ]
 

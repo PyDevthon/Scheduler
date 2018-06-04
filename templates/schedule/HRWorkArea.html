@@ -30,7 +30,7 @@ Welcome HR
   <div class="card-body">
     <h4 class="card-title d-flex justify-content-center">John Doe</h4>
     <p class="card-text d-flex justify-content-center">View Candidates</p>
-        <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+        <a href="{% url 'view_candidate' %}" class="btn btn-primary d-flex justify-content-center">View</a>
   </div>
 </div>
     </div>
@@ -65,10 +65,8 @@ Welcome HR
       <label for="pwd"><span style="color: black">Interview Date</span></label>
     {{ form.interview_date }}
   </div>
-
-
         <div class="form-group">
-  <label for="sel1">Interviewed By</label>
+            <label for="sel1"><span style="color: black">Interviewed By</span></label>
   <select class="form-control" name="interviewed_by" id="sel1">
         {% for choice in form.interviewed_by.field.choices %}
         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
@@ -77,9 +75,18 @@ Welcome HR
 </div>
 
                 <div class="form-group">
-  <label for="sel1">Status</label>
+                    <label for="sel1"><span style="color: black">Status</span></label>
   <select class="form-control" name="status" id="sel1">
         {% for choice in form.status.field.choices %}
+        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+                        <div class="form-group">
+                            <label for="sel1"><span style="color: black">Applying For</span></label>
+  <select class="form-control" name="applying_for" id="sel1">
+        {% for choice in form.applying_for.field.choices %}
         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
     {% endfor %}
   </select>

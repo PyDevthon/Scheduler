@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
+from .models import Candidate
 from django.views import generic
 from django.contrib.auth.views import LoginView, LogoutView, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -47,17 +47,16 @@ class CreateCandidate(generic.FormView):
     success_url = reverse_lazy('hrworkarea')
 
     def form_valid(self, form):
-        form.save(commit=False)
-        form.added_by_id = self.request.user.id
-        interviewer_name = form.interviewed_by
-        if interviewer_name == ' ':
-            form.interviewed_by = None
-        else:
-            interviewer = User.objects.get(username=interviewer_name)
-            form.interviewed_by = interviewer.id
-        form.save()
+        form.save(commit=True)
         return super().form_valid(form)
 
     def form_invalid(self, form):
         form = form
-        return super().form_valid(form)
+        return super().form_invalid(form)
+
+
+class ViewCandidates(generic.ListView):
+    model = Candidate
+    template_name = 'schedule/viewcandidates.html'
+    context_object_name = 'candidates'
+    paginate_by = '10'

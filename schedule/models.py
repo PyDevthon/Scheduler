@@ -39,6 +39,7 @@ class Candidate(models.Model):
                                        null=True)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='added_by', blank=True, null=True)
     status = models.TextField(choices=STATUS, default='First')
+    applying_for = models.TextField(choices=CHOICES, default='DEV')
 
     def __str__(self):
         return self.name

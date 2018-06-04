@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'schedule',
     'bootstrap4',
+    'datetimepicker',
     'bootstrap_pagination',
     'django.contrib.admin',
     'django.contrib.auth',
